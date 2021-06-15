@@ -4,23 +4,18 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/*                  1
+ *            3     5
+ *         10     7   12
+ *           13          16
+ *       15                  19
+ *                               121
+ *
+ *
+ */
 public class LeftViewTree {
 
     private static int maxLevel;
-    /*              1
-        *            3     5
-        *         10     7   12
-        *           13          16
-        *       15                  19
-        *                               121
-        *
-        *       Pre Order !!!!
-                10  15  13  3  1  7  5  12
-                In Order !!!
-                10  15  13  3  1  7  5  12
-                Post Order
-                15  13  10  3  7  12  5  1
-        */
 
     public static void main(String[] args) {
 

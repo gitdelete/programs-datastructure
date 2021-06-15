@@ -3,23 +3,22 @@ package com.aman.datastructure.tree;
 import java.util.*;
 
 
+/*              1
+ *           3     5
+ *        10    7    12
+ *          13     8   16
+ *        15     10          19
+ *           11                  121
+ *        18
+ *      20
+ *    21
+ *
+ *   1   3  10  5  12  20  21  16  19  121  // not in order though  (for printing
+ *                                              order left to right , take a leftList and
+ *                                              rightList then print seperately)
+ *
+ */
 public class TopViewTree {
-
-    /*              1
-     *           3     5
-     *        10    7    12
-     *          13     8   16
-     *        15     10          19
-     *           11                  121
-     *        18
-     *      20
-     *    21
-     *
-     *   1   3  10  5  12  20  21  16  19  121  // not in order though  (for printing
-     *                                              order left to right , take a leftList and
-     *                                              rightList then print seperately)
-     *
-     */
 
     private static int maxLeft=1;
     private static int maxRight=1;

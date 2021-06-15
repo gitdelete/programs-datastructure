@@ -2,20 +2,19 @@ package com.aman.datastructure.tree;
 
 import java.util.*;
 
-
+/*              1
+ *            3     5
+ *         10     7   12
+ *           13          16
+ *       15                  19
+ *                               121
+ *
+ *
+ *   121  15  13  10  3  1  5  12  16  19
+ *
+ */
 public class LeftAndRightView {
 
-    /*              1
-    *            3     5
-    *         10     7   12
-    *           13          16
-    *       15                  19
-    *                               121
-    *
-    *
-    *   121  15  13  10  3  1  5  12  16  19
-    *
-     */
     public static void main(String[] args) {
 
         Node1 root = new Node1(1);
@@ -33,8 +32,6 @@ public class LeftAndRightView {
         printLeftAndRightView(root);
 
     }
-
-
 
     private static void printLeftAndRightView(Node1 root) {
 
@@ -71,8 +68,6 @@ public class LeftAndRightView {
         rightList.stream().forEach(a->System.out.println(a.data));
 
     }
-
-
 
     static class Node1{
         private int data;

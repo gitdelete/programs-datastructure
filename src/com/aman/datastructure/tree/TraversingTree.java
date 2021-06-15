@@ -5,22 +5,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/*              1
+   *            3     5
+   *         10     7   12
+   *           13
+   *       15
+   *
+   *       Pre Order !!!!
+           10  15  13  3  1  7  5  12
+           In Order !!!
+           10  15  13  3  1  7  5  12
+           Post Order
+           15  13  10  3  7  12  5  1
+   */
 public class TraversingTree {
 
-
-    /*              1
-    *            3     5
-    *         10     7   12
-    *           13
-    *       15
-    *
-    *       Pre Order !!!!
-            10  15  13  3  1  7  5  12
-            In Order !!!
-            10  15  13  3  1  7  5  12
-            Post Order
-            15  13  10  3  7  12  5  1
-    */
     public static void main(String[] args) {
 
         Node root = new Node(1);
