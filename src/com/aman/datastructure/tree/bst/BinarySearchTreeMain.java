@@ -25,5 +25,17 @@ public class BinarySearchTreeMain {
         bst.find(10);
         bst.find(9);
         bst.find(27);
+
+        //Searching BST with recursion
+        System.out.println("\nSearching BST with Recursion (returns node)!!!!");
+        bst.findWithRecursion(4);
+        bst.findWithRecursion(22);
+
+        System.out.println("\nRemove BST node!!!!");
+        bst.traverseInorder();
+        bst.remove(1);
+        bst.traverseInorder();
+        bst.remove(22);
+        bst.traverseInorder();
     }
 }

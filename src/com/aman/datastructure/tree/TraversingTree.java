@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-/*              1
+/*                 1
    *            3     5
    *         10     7   12
    *           13
    *       15
    *
    *       Pre Order !!!!
-           10  15  13  3  1  7  5  12
+           1  3  10  13  15  5  7  12
            In Order !!!
            10  15  13  3  1  7  5  12
            Post Order
