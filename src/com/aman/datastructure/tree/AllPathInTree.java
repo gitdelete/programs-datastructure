@@ -60,9 +60,8 @@ public class AllPathInTree {
                 System.out.print(path[i]+"  ");
         }
 
-
-         allPathsToLeaf(root.right, path, count+1);
-         allPathsToLeaf(root.left, path, count+1);
+        allPathsToLeaf(root.right, path, count+1);
+        allPathsToLeaf(root.left, path, count+1);
 
     }
 
