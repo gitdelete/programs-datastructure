@@ -8,6 +8,8 @@ public class MaxHeapify {
 
     public static void main(String[] args) {
         int[] arr = {3,43,12,23,5,19,17,34,67,1,10,25};
+
+        // Starting from one level up the leaf nodes
         int startIdx = (arr.length / 2) - 1;
         for(int i=startIdx; i>=0; i--)
             maxHeapify(arr,i);
