@@ -1,10 +1,19 @@
 package com.aman.datastructure.tree;
 
 
-import java.util.LinkedList;
-import java.util.Queue;
-
-public class LevelOrderTraverseTree {
+/*             1
+ *           3     5
+ *        10    7    12
+ *          13     8   16
+ *        15     10        19
+ *             11              121
+ *           18
+ *         20
+ *        21
+ *
+ *
+ */
+public class VisibleNodesTree {
 
 
     public static void main(String[] args) {
@@ -27,35 +36,39 @@ public class LevelOrderTraverseTree {
         root.right.right.right.right = new Node(19);
         root.right.right.right.right.right = new Node(121);
 
-        levelOrderTraversal(root);
+        /*  Node root = new Node(8);
+          root.setLeft(new Node(2));
+          root.setRight(new Node(6));
+            root.left.left = new Node(8);
+        root.left.right = new Node(7);*/
+
+        System.out.println("\n All Path to Leaf in Tree !!! ");
+        allPathsToLeaf(root, root.data);
+        System.out.println(count);
 
     }
 
-
-    public static void levelOrderTraversal(Node root){
-
-        if (root == null){
+    static int count = 0;
+    public static void allPathsToLeaf(Node root, int largest)
+    {
+        if(root == null)
+        {
             return;
         }
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(root);
+        System.out.println(largest + " " + root.data);
+        if(largest <= root.data){
 
-        while(! queue.isEmpty()){
-            int n= queue.size();
-            System.out.println();
-            for(int i=1;i<=n;i++){
-                Node node = queue.poll();
-                System.out.print(node.data+"   ");
-                if(node.left!=null)
-                    queue.add(node.left);
-                if(node.right!=null)
-                    queue.add(node.right);
-
-            }
-
+            largest = root.data;
+            System.out.println(largest);
+            count++;
         }
 
+
+        allPathsToLeaf(root.right, largest);
+        allPathsToLeaf(root.left, largest);
+
     }
+
 
     static class Node{
         private int data;

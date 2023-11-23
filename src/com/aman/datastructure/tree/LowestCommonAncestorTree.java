@@ -1,5 +1,8 @@
 package com.aman.datastructure.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LowestCommonAncestorTree {
 
 
@@ -23,16 +26,67 @@ public class LowestCommonAncestorTree {
         root.right.right.right.right = new Node(19);
         root.right.right.right.right.right = new Node(121);
 
-        printPathOfNode(root);
+        findCommonAncestor(root,13,121);
 
     }
 
 
-    public static void printPathOfNode(Node node){
+    private static void findCommonAncestor(Node root, int i, int j) {
+
+        List<Node> firstPath= new ArrayList<>();
+        findNodePath(root,i,firstPath);
+        System.out.println(" ");
+        for (Node x: firstPath
+        ) {
+            System.out.print(x.data+" ");
+
+        }
+        System.out.println(" ");
+
+        List<Node> secondPath= new ArrayList<>();
+        findNodePath(root,j, secondPath);
+
+        for (Node x: secondPath
+        ) {
+            System.out.print(x.data+" ");
+        }
+
+        System.out.println(" ");
 
 
+        if (firstPath.size()==0 || secondPath.size() == 0){
+            System.out.println("There is no distance from node first to second !!!");
+        }
 
+        int indexFirstNode =-1;
+        int indexSecondNode =-1;
+        for (int m=firstPath.size()-1; m>=0; m--) {
+            if(secondPath.contains(firstPath.get(m))){
+                System.out.println(firstPath.get(m).data);
+                break;
+            }
+        }
     }
+
+    private static boolean findNodePath(Node node, int i, List<Node> path) {
+
+        if(node == null)
+            return false;
+
+        path.add(node);
+
+        if(node.data == i)
+            return true;
+
+        if(findNodePath(node.left,i,path))
+            return true;
+        if (findNodePath(node.right,i,path))
+            return true;
+
+        path.remove(node);
+        return false;
+    }
+
 
     static class Node{
         private int data;

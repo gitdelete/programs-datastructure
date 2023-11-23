@@ -33,37 +33,48 @@ public class SerializeDeserilizeBST {
         Node node = new Node(nodesList.get(0));
         Node root= node;
         nodesList.remove(nodesList.get(0));
-        Iterator itr = nodesList.iterator();
+        Iterator<Integer> itr = nodesList.iterator();
         while (itr.hasNext()){
-
-            Node n = new Node((int)itr.next());
-            int data =n.getData();
-            boolean flag=true;
-            while (flag){
-                while (data < node.getData()) {
-                    if (node.getLeft() == null) {
-                        break;
+            Node n = null;
+            int data = itr.next();
+            if(data == -1){
+                n=null;
+            }else {
+                boolean flag = true;
+                while (flag) {
+                    while (data < node.getData()) {
+                        if (node.getLeft() == null) {
+                            break;
+                        }
+                        node = node.getLeft();
                     }
-                    node = node.getLeft();
-                }
-                while (data > node.getData()) {
-                    if (node.getRight() == null) {
-                        break;
+                    while (data > node.getData()) {
+                        if (node.getRight() == null) {
+                            break;
+                        }
+                        node = node.getRight();
                     }
-                    node = node.getRight();
-                }
-                if(data<node.getData() && node.getLeft() == null){
-                    node.setLeft(new Node(data));
-                    flag=false;
-                }
-                if(data> node.getData() && node.getRight() == null){
-                    node.setRight(new Node(data));
-                    flag=false;
+                    if (data < node.getData() && node.getLeft() == null) {
+                        node.setLeft(new Node(data));
+                        flag = false;
+                    }
+                    if (data > node.getData() && node.getRight() == null) {
+                        node.setRight(new Node(data));
+                        flag = false;
+                    }
                 }
             }
         }
 
-        inorderTraversal(root);
+        preOrderTraversal(root);
+    }
+
+    private static void preOrderTraversal(Node root) {
+        if(root != null){
+            System.out.print(root.getData()+"  ");
+            inorderTraversal(root.getLeft());
+            inorderTraversal(root.getRight());
+        }
     }
 
 
@@ -87,7 +98,7 @@ public class SerializeDeserilizeBST {
         root.getRight().setLeft(new Node(55));
         root.getRight().setRight(new Node(70));
         root.getRight().getRight().setRight(new Node(72));
-        inorderTraversal(root);
+        preOrderTraversal(root);
 
         System.out.println(" ");
         serializeBST(root);

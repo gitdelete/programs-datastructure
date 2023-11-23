@@ -1,17 +1,12 @@
 package com.aman.datastructure.graph;
 
-import com.sun.source.tree.WhileLoopTree;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
-
-public class CheckCyclicDirectedGraph {
+public class CheckCyclicDirectedGraphWithColor {
 
     LinkedList<Node>[] nodes ;
     int vertices;
-    public CheckCyclicDirectedGraph(int vertices) {
+    public CheckCyclicDirectedGraphWithColor(int vertices) {
         this.vertices = vertices;
         nodes = new LinkedList[vertices];
         //initialize adjacency lists for all the vertices
@@ -27,34 +22,29 @@ public class CheckCyclicDirectedGraph {
 
     // Directed Graph
     public void detectCycleDFS(int start){
-        boolean[] visited = new boolean[nodes.length];
+        int WHITE = 0;// not visited
+        int GRAY=1;  // currently in loop
+        int BLACK=2; // processed and no cycle
+        int[] color = new int[nodes.length];
+        Arrays.fill(color, WHITE);
         Stack<Integer> st = new Stack<>();
         st.push(start);
-        List<Integer> listCycle = new ArrayList<>();
-        boolean flagAdded = true;
-        int node;
-        boolean peek = true;
         while (!st.empty()){
-
-            if (!flagAdded){
-                node=st.pop();
-                listCycle.remove(Integer.valueOf(node));
-            }else {
-                node = st.peek();
-                listCycle.add(node);
+            int x=st.pop();
+            color[x] = GRAY;
+            boolean isWhite = false;
+            for(int i=nodes[x].size()-1; i>=0; i--){
+                if(color[nodes[x].get(i).dest] == WHITE){
+                    st.push(nodes[x].get(i).dest);
+                    isWhite =true;
+                }
+                if(color[nodes[x].get(i).dest] == GRAY){
+                    System.out.println("Cycle Detected at "+ nodes[x].get(i).dest);
+                    return;
+                }
             }
-            flagAdded=false;
-            visited[node] = true;
-            for(int i=nodes[node].size()-1; i>=0; i--){
-                if(!visited[nodes[node].get(i).dest]){
-                    st.push(nodes[node].get(i).dest);
-                    flagAdded =true;
-                }
-                if(listCycle.contains(nodes[node].get(i).dest) && flagAdded){
-                    System.out.println("Cycle Found !!!");
-                    printCycle(listCycle, nodes[node].get(i).dest);
+            if (!isWhite){
 
-                }
             }
         }
     }
@@ -78,13 +68,12 @@ public class CheckCyclicDirectedGraph {
     }
 
     public static void main(String[] args) {
-        CheckCyclicDirectedGraph graph = new CheckCyclicDirectedGraph(10);
+        CheckCyclicDirectedGraphWithColor graph = new CheckCyclicDirectedGraphWithColor(8);
         graph.addEdge(0, 0, 1);
         graph.addEdge(0, 0, 2);
         graph.addEdge(0, 0, 3);
         graph.addEdge(1, 0, 2);
         graph.addEdge(1, 0, 3);
-        graph.addEdge(1, 0, 8);
         graph.addEdge(2, 0, 3);
         graph.addEdge(3, 0, 4);
 //        graph.addEdge(5, 0, 0);
@@ -92,10 +81,6 @@ public class CheckCyclicDirectedGraph {
         graph.addEdge(5, 0, 6);
         graph.addEdge(4, 0, 5);
         graph.addEdge(6, 0, 7);
-        graph.addEdge(8, 0, 9);
-        graph.addEdge(9, 0, 2);
-        graph.addEdge(9, 0, 1);
-        graph.addEdge(9, 0, 7);
 
 
         graph.printGraph();
