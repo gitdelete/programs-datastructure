@@ -4,7 +4,6 @@ import com.sun.source.tree.WhileLoopTree;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 public class BreadthFirstSearch {
 
@@ -26,14 +25,17 @@ public class BreadthFirstSearch {
 
     // Directed Graph
     public void bfs(int start){
+
         boolean[] visited = new boolean[nodes.length];
         Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
 
         while (!queue.isEmpty()){
             int x=queue.remove();
-            visited[x] = true;
-            System.out.print(x+" ");
+            if(visited[x]==false) {
+                visited[x] = true;
+                System.out.print(x + " ");
+            }
             for(int i=nodes[x].size()-1; i>=0; i--){
                 if(!visited[nodes[x].get(i).dest]){
                     queue.add(nodes[x].get(i).dest);
@@ -60,7 +62,7 @@ public class BreadthFirstSearch {
         graph.addEdge(1, 0, 2);
         graph.addEdge(2, 0, 0);
         graph.addEdge(2, 0, 3);
-        graph.addEdge(3, 0, 3);
+        graph.addEdge(3, 0, 0);
 
         graph.printGraph();
         graph.bfs(2);

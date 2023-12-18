@@ -10,6 +10,7 @@ public class SerializeDeserilizeBST {
     //ArrayList to store serialized tree instead of file. We can write to file as well.
     private static ArrayList<Integer> nodesList = new ArrayList<>();
 
+    // preorder save to serialize a BST as a BST can be created from  only preorder.
     public static void serializeBST(Node root){
 
         if(root == null) {
@@ -24,8 +25,6 @@ public class SerializeDeserilizeBST {
             serializeBST(root.getLeft());
             serializeBST(root.getRight());
         }
-
-
     }
 
     public static void deserializeBST(){
@@ -65,15 +64,17 @@ public class SerializeDeserilizeBST {
                 }
             }
         }
-
+        System.out.println(" Preorder ---------------------- ");
         preOrderTraversal(root);
+        System.out.println(" \n Inorder ---------------------- ");
+        inorderTraversal(root);
     }
 
     private static void preOrderTraversal(Node root) {
         if(root != null){
             System.out.print(root.getData()+"  ");
-            inorderTraversal(root.getLeft());
-            inorderTraversal(root.getRight());
+            preOrderTraversal(root.getLeft());
+            preOrderTraversal(root.getRight());
         }
     }
 
@@ -102,7 +103,7 @@ public class SerializeDeserilizeBST {
 
         System.out.println(" ");
         serializeBST(root);
-
+        System.out.println(" ");
         deserializeBST();
 
     }
