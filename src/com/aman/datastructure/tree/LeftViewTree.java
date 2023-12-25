@@ -5,8 +5,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 /*                  1
- *            3     5
- *         10     7   12
+ *                3     5
+ *         ```10     7   12
  *           13          16
  *       15                  19
  *                               121

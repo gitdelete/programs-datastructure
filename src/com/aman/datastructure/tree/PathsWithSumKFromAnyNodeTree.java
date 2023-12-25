@@ -33,7 +33,7 @@ public class PathsWithSumKFromAnyNodeTree {
         root.right.right.left.left = new Node(10);
         root.right.right.left.left.left = new Node(11);
 
-        int sum = 22;
+        int sum = 13;
         int result = 0;
         List<List<Node>> paths = new ArrayList<>();
         List<Node> path = new ArrayList<Node>();
@@ -59,8 +59,10 @@ public class PathsWithSumKFromAnyNodeTree {
         path.add(node);
 
         if(sum == result){
+//            System.out.println(path);
             List<Node> list = new ArrayList<>(path);
             paths.add(list);
+//            return;
         }
 
         findPathsWithSum(node.left, sum, result, paths, path);

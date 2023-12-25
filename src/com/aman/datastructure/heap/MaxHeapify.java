@@ -12,7 +12,7 @@ public class MaxHeapify {
         // Starting from one level up the leaf nodes
         int startIdx = (arr.length / 2) - 1;
         for(int i=startIdx; i>=0; i--)
-            maxHeapify(arr,i);
+            maxHeapify(arr, i);
 
         Arrays.stream(arr).forEach(a->System.out.print(a+" "));
     }
